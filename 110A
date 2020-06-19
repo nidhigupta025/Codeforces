@@ -1,0 +1,24 @@
+#include <iostream>
+using namespace std;
+int lucky(long long int n)
+{
+  int co=0;
+  while(n)
+  { 
+    if(n%10==4 || n%10==7)
+    co++;
+    n=n/10;
+  }  
+  if(co==4 || co==7)
+  return 1;
+  return 0; 
+}
+int main()
+{ long long int n;
+  cin>>n;
+  if(lucky(n))
+  cout<<"YES";
+  else
+  cout<<"NO";
+  return 0;
+}
