@@ -1,0 +1,15 @@
+#include <iostream>
+using namespace std;
+int main()
+{ int a,b;
+  cin>>a>>b;
+  int co=0;
+  while(b>=a)
+  {
+    a=a*3;
+    b=b*2;
+    co++;
+  }
+  cout<<co;
+  return 0;
+}
