@@ -1,0 +1,32 @@
+#include <iostream>
+#include<map>
+#include<string>
+#include<vector>
+using namespace std;
+int main() 
+{
+   int t;
+   cin>>t;
+   map<string,int>m;
+   vector<string>v;
+   while(t--)
+   {
+     string s;
+     cin>>s;
+     if(m.find(s)==m.end())
+     { m.insert({s,0});
+       v.push_back("OK");
+     }
+     else 
+     {
+       //int val=m.find(s);
+       m[s]++;
+       string val=to_string(m[s]);
+       string s2=s+val;
+       v.push_back(s2);
+     }
+   }  
+   for(auto i:v)
+   cout<<i<<"\n";
+   return 0;
+}
