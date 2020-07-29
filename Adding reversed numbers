@@ -1,0 +1,29 @@
+#include <iostream>
+using namespace std;
+#define ll long long
+ll reverse(ll no)
+{
+  ll copy=0;
+  while(no)
+  {
+    copy=(copy*10)+(no%10);
+    no/=10;
+  }
+  return copy;
+}
+int main() 
+{
+ ll t; 
+ cin>>t;
+ while(t--)
+ {
+   ll m,n,mm,nn;
+   cin>>m;
+   cin>>n;
+   mm=reverse(m);
+   nn=reverse(n);
+   cout<<reverse(mm+nn);
+   cout<<"\n";
+ }
+ return 0;
+}
