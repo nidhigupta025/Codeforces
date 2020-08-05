@@ -1,0 +1,105 @@
+A radio center receivs some signals and needs to classify them according to frequency.
+There are  standard frequencies known to the center. They have identified  different signals which are to be classified. Given the standard signal frequencies freq_standard and frequencies of signals to be classified freq_signal, can you help the radio center identify them?
+
+A signal X belongs to a standard signal Y if the frequency of X is closer to that of Y than to any other frequency. If it is equidistant from two known frequencies, then the signal with higher frequency is chosen.
+
+Consider, for example, freq_standard = [2, 3, 1, 4, 8] and freq_classify = [1, 5, 6]. Frequencies 1 and 5 belong to standard frequencies 1(index=3) and 4(index=4) respectively. Since 6 is equidistant from two standard frequencies, 4 and 8, choose the higher frequency, 8(index=5). The corresponding classifications are [3, 4, 5].
+
+Function Description
+Complete the function classifySignals in the editor below. The function must return an integer array denoting the classifications of each frequency.
+classifySignals has two parameters -
+freq_standard: an integer array
+freq_signals: an integer array
+Input Format
+
+The first line of input contains 2 space-separated integers: ,  - the number of strings and the number of queries.
+
+The second line contains  space-separated integers, the array freq_standard.
+
+The next line contains  space-separated integers, the array freq_signals.
+
+Constraints
+
+|freq_standard| 
+|freq_signals| 
+Output Format
+
+Print  lines: each line should contain an integer representing the index of the standard frequency corresponding to the given signal. There is a code stub to handle I/O if you choose to use it.
+
+Sample Input 0
+
+5 5
+7 1 12 9 15
+2 9 2000 13 4
+Sample Output 0
+
+2
+4
+5
+3
+1
+Explanation 0
+
+The closest frequency to 2 is 1 (index = 2). The closest frequency to 9 is 9 (index = 4). The closest frequency to 2000 is 15 (index = 5). The closest frequency to 13 is 12 (index = 3). The closest frequency to 4 is 7 (index = 1).
+
+Sample Input 1
+
+2 10
+1 2
+1 2 3 4 5 6 7 8 9 10
+Sample Output 1
+
+1
+2
+2
+2
+2
+2
+2
+2
+2
+2
+Explanation 1
+
+The closest frequency to 1 is 1(index = 1). Any frequency which is greater than or equal to 2 will have closest frequency as 2(index = 2).
+
+
+
+vector<int> classifySignals(vector<int> a, vector<int> b) {
+    vector<int>ans;
+    map<int,int>m;
+    ll n1=a.size();
+    ll n2=b.size();
+    for(int i=0;i<n1;i++)
+    {
+        m[a[i]]=i;
+    }
+     sort(a.begin(),a.end());
+     for(ll i=0;i<n2;i++)
+     {
+        ll pos=lower_bound(a.begin(),a.end(),b[i])-a.begin();
+        if(pos==0)
+        {
+            ans.push_back(m[a[pos]]+1);
+            continue;
+        }   
+        if(pos==n1)
+        {
+            ans.push_back(m[a[n1-1]]+1);
+            continue;
+        }   
+        ll d1=a[pos]-b[i];
+        ll d2=abs(a[pos-1]-b[i]); 
+        if(d1>d2)
+        {
+           ans.push_back(m[a[pos-1]]+1);
+           continue;
+        }
+        else
+        {
+            ans.push_back(m[a[pos]]+1);
+            continue;
+        }
+     }
+    return ans;
+}
