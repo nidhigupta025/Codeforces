@@ -1,0 +1,31 @@
+#include <bits/stdc++.h>
+using namespace std;
+int solve(int a[],int n,int k)
+{
+    int dp[n];
+    memset(dp,-1,sizeof(dp));
+    dp[n-1]=0;
+    for(int i=n-2;i>=0;i--)
+    {
+       for(int j=1;j<=k;j++)
+       {   
+           int steps=INT_MAX; 
+           if((i+j)<n) 
+           steps=abs(a[i]-a[i+j])+dp[i+j];   
+           if(dp[i]==-1)
+           dp[i]=steps;
+           else
+           dp[i]=min(dp[i],steps);       
+       }
+    }
+    return dp[0];
+}
+int main() 
+{
+   int n,k;
+   cin>>n>>k;
+   int a[n];
+   for(int i=0;i<n;i++)
+   cin>>a[i];
+   cout<<solve(a,n,k);
+}
