@@ -1,0 +1,29 @@
+
+1.Bottom up O(n) O(n)
+#include <bits/stdc++.h>
+using namespace std;
+int solve(int a[],int n)
+{
+    int dp[n];
+    memset(dp,-1,sizeof(dp));
+    dp[n-1]=0;
+    for(int i=n-2;i>=0;i--)
+    {
+       int one=INT_MAX,two=INT_MAX; 
+       one=abs(a[i]-a[i+1])+dp[i+1];
+       if((i+2)<n) 
+           two=abs(a[i]-a[i+2])+dp[i+2];
+       dp[i]=min(one,two);
+    }
+    return dp[0];
+}
+int main() 
+{
+   int n;
+   cin>>n;
+   int a[n];
+   for(int i=0;i<n;i++)
+   cin>>a[i];
+   cout<<solve(a,n);
+}
+
