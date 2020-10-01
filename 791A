@@ -1,3 +1,4 @@
+//https://codeforces.com/problemset/problem/791/A(Program Link)
 #include <iostream>
 using namespace std;
 int main()
