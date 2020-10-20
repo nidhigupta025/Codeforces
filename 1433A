@@ -1,0 +1,64 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define pm(i,m)  for(auto i: m) cout<<i.first<<" "<<i.second<<"\n";
+#define form(i,m)  for(auto i: m)
+#define forr(i,n) for(int i=0;i<n;i++)
+#define forl(i,n) for(int i=n-1;i>=0;i--)
+#define vi vector<int>
+#define vp vector<pair<int,int>>
+#define p pair<int,int> 
+#define mapp map<int,int>
+#define sett set<int>
+#define pb push_back
+#define ll long long
+#define lli long long int
+#define dob double
+#define inf (int)(1e18)
+#define mod 1000000007
+#define mem(a,i) memset(a,i,sizeof(a))
+#define imin INT_MIN
+#define imax INT_MAX
+#define nl cout<<"\n";
+int main() 
+{
+    int t;
+    cin>>t;
+    while(t--)
+    {
+       int n;
+       cin>>n;
+       int co=0;
+       co+=10*((n%10)-1);
+ 
+       int a[5];
+       a[1]=1;
+       a[2]=11;
+       a[3]=111;
+       a[4]=1111;
+       for(int i=1;i<=4;i++)
+       {
+           a[i]*=(n%10);
+       }
+       for(int i=1;i<=4;i++)
+       {
+           if(a[i]<=n)
+           co+=i;
+       }
+       cout<<co<<"\n";
+    }
+}
+
+
+#include<bits/stdc++.h>
+using namespace std;
+int arr[4]={1,3,6,10};
+int main()
+{
+    int t;
+    cin>>t;
+    while(t--){
+        string s;
+        cin>>s;
+        cout<< ((s[0]-'0')-1)*10+arr[s.length()-1]<<endl;
+    }
+}
