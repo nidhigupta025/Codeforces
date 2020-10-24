@@ -1,0 +1,30 @@
+Codeforces - 845 C
+
+#include <bits/stdc++.h>
+#define pb push_back
+#define lli long long int
+using namespace std;
+int main() 
+{
+    lli t;
+    cin>>t;
+    vector<pair<lli,lli>>v;
+    while(t--)
+    {
+        lli l,r;
+        cin>>l>>r;
+        v.pb({l,1});
+        v.pb({r,-1});  // If it is possible to start another task at t
+    }
+    sort(v.begin(),v.end());
+    lli co=0,maxm=0;
+    for(auto i:v)
+    {
+        if(i.second==1)
+        co++;
+        else
+        co--;
+        maxm=max(maxm,co);
+    }
+    cout<<maxm;
+}
