@@ -1,0 +1,70 @@
+Topic tag: Binary search
+
+#include <bits/stdc++.h>
+using namespace std;
+#define pm(i,m)  for(auto i: m) cout<<i.first<<" "<<i.second<<"\n";
+#define form(i,m)  for(auto i: m)
+#define forr(i,n) for(int i=0;i<n;i++)
+#define forl(i,n) for(int i=n-1;i>=0;i--)
+#define vi vector<int>
+#define vp vector<pair<int,int>>
+#define p pair<int,int> 
+#define mapi map<int,int>
+#define mapc map<char,int>
+#define seti set<int>
+#define pb push_back
+#define ll long long
+#define lli long long int
+#define dob double
+#define inf (int)(1e18)
+#define mod 1000000007
+#define mem(a,i) memset(a,i,sizeof(a))
+#define imin INT_MIN
+#define imax INT_MAX
+#define nl cout<<"\n"
+int check(ll a[],int n,int c,ll dist)
+{
+    ll last=a[0],co=1;
+     for(ll i=1;i<n;i++)
+     {
+         if(a[i]-last>=dist)
+         {
+             co++; 
+             last=a[i];
+         }
+         if(c==co)
+         return 1;
+     }
+     return 0;
+}
+int main() 
+{
+    //fastio;
+    int t;
+    cin>>t;
+    while(t--)
+    {
+       int n,c;
+       cin>>n>>c;
+       ll a[n];
+       forr(i,n)
+       cin>>a[i];
+       sort(a,a+n);
+       ll s=0,e=a[n-1]-a[0];
+       ll ans=0;
+       while(s<=e)
+       {
+           ll mid=s+(e-s)/2;
+           if(check(a,n,c,mid)==1)
+           {
+              ans=mid;
+              s=mid+1;
+           }
+           else
+           {
+                e=mid-1; 
+           }
+       }
+       cout<<ans<<"\n";
+    }
+}
