@@ -1,0 +1,26 @@
+#include<bits/stdc++.h>
+using namespace std;
+long long int gcdfn(long long a, long long b)
+{
+	if(a==0)
+	return b;
+	return gcdfn(b%a,a);
+}
+int main()
+{
+	long long int a,b;
+	cin>>a>>b;
+	long long int n=gcdfn(a,b),ans=0;
+
+	for(long long i=1;i<=sqrt(n);i++)
+	{
+		if(n%i==0)
+		{
+             if(i*i==n)
+             ans+=1;
+             else
+             ans+=2;
+		}
+	}
+	cout<<ans;
+}
