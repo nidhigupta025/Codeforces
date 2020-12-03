@@ -1,5 +1,6 @@
 https://www.hackerearth.com/challenges/competitive/code-monk-disjoint-set-union-union-find/algorithm/teachers-dilemma-3/
 
+Topic tag: Disjoint set, hackerearth
 
 #include<bits/stdc++.h>
 using namespace std;
