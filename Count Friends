@@ -1,0 +1,56 @@
+https://www.hackerearth.com/challenges/competitive/code-monk-disjoint-set-union-union-find/algorithm/count-friends/description/
+
+Topic tag: Disjoint set , Hackerearth 
+
+
+#include<bits/stdc++.h>
+using namespace std;
+int a[100001],r[100001];
+int find(int x)
+{
+    if(a[x]==-1)
+    return  x;
+    return a[x]=find(a[x]);
+}
+void unionn(int x,int y)
+{
+    x=find(x);
+    y=find(y);
+
+    if(x==y)
+    return;
+    
+    if(r[x]>r[y])
+    {
+        a[y]=x;
+        r[x]+=r[y];
+    }
+    else
+    {
+        a[x]=y;
+        r[y]+=r[x];
+    }
+}
+int main()
+{
+    int n,q;
+    cin>>n>>q;
+    for(int i=1;i<=n;i++)
+    {    a[i]=-1;
+         r[i]=1;
+    }
+    while(q--)
+    {
+        int x,y;
+        cin>>x>>y;
+        unionn(x,y);
+    }
+
+    for(int i=1;i<=n;i++)
+    {   
+        int par=find(i);
+        cout<<(r[par]-1)<<" "; // not to count one self hence -1
+    }
+   
+    return 0;
+}
