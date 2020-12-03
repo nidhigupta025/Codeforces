@@ -1,0 +1,59 @@
+Topic tag: Disjoint set , coding ninjas
+
+Ques:
+Ninja has been appointed as a data scientist for a MNC. He has been provided with a huge list of people who belong to some countries. 
+He doesn't know who belongs to which country, but he knows which two people belong to the same country. Now, he has been asked to find the 
+total number of unique countries this group of people belong to.
+Ninja has many other projects to work on, therefore he has passed on this task to you. Are you up to the challenge?
+
+#include<bits/stdc++.h>
+using namespace std;
+int a[100001],r[100001];
+int find(int x)
+{
+    if(a[x]==-1)
+    return  x;
+    return a[x]=find(a[x]);
+}
+void unionn(int x,int y)
+{
+    x=find(x);
+    y=find(y);
+
+    if(x==y)
+    return;
+    
+    if(r[x]>r[y])
+    {
+        a[y]=x;
+        r[x]+=r[y];
+    }
+    else
+    {
+        a[x]=y;
+        r[y]+=r[x];
+    }
+}
+int main()
+{
+    int n,q;
+    cin>>n>>q;
+    for(int i=0;i<n;i++)
+    {    a[i]=-1;
+         r[i]=1;
+    }
+    while(q--)
+    {
+        int x,y;
+        cin>>x>>y;
+        unionn(x,y);
+    }
+    set<int>s; 
+    for(int i=0;i<n;i++)
+    {   
+        int parent=find(i);
+        s.insert(parent);
+    }
+    cout<<s.size();
+    return 0;
+}
