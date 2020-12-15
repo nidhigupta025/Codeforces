@@ -1,0 +1,82 @@
+Codechef
+
+#include <bits/stdc++.h>
+using namespace std;
+#define pm(i,m)  for(auto i: m) cout<<i.first<<" "<<i.second<<"\n";
+#define form(i,m)  for(auto i: m)
+#define forr(i,n) for(int i=0;i<n;i++)
+#define forl(i,n) for(int i=n-1;i>=0;i--)
+#define vi vector<int>
+#define vp vector<pair<int,int>>
+#define p pair<int,int> 
+#define mapi map<int,int>
+#define mapc map<char,int>
+#define seti set<int>
+#define so(v) sort(v.begin(),v.end())
+#define rev(v) reverse(v.begin(),v.end());
+#define pb push_back
+#define ll long long
+#define lli long long int
+#define dob double
+#define inf (int)(1e18)
+#define mod 1000000007
+#define mem(a,i) memset(a,i,sizeof(a))
+#define imin INT_MIN
+#define imax INT_MAX
+#define nl cout<<"\n"
+#define fastio ios_base::sync_with_stdio(false); cin.tie(NULL)
+ll greatestpoweroftwo(int n)
+{
+    ll po=(ll)log2(n);
+    return ((ll)pow(2,po));
+}
+int main() 
+{
+    fastio;
+    int t;
+    cin>>t;
+    while(t--)
+    {
+       ll n,x;
+       cin>>n>>x;
+       ll a[n];
+       forr(i,n)
+       cin>>a[i];
+
+       ll i=0;
+       while(x>0)
+       {
+            while(a[i]==0 && i<n)
+            i++;
+
+            if(i==n-1)
+            break;
+           
+            ll gp=greatestpoweroftwo(a[i]);
+            a[i]^=gp;
+
+            for(int j=i+1;j<n;j++)
+            {
+                if(j==n-1)
+                {
+                    a[j]^=gp;
+                    break;
+                }
+                if((a[j]^gp)<a[j])
+                {  a[j]=a[j]^gp;
+                   break;
+                }
+            }
+            x--;
+    
+       }
+       
+       if(x==1 || (x&1 && n==2))
+       {
+           a[n-1]^=1;
+           a[n-2]^=1;
+       }          
+       forr(i,n)
+       cout<<a[i]<<" "; nl;
+    }
+}
